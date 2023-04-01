@@ -75,6 +75,13 @@ namespace SMS
 
 		void ExecuteCloseCommand()
 		{
+			using (DataContext context = new DataContext())
+			{
+				Student tmp = context.Students.Single(x => x.IsSelected == true);
+				tmp.IsSelected = false;
+				context.SaveChanges();
+			}
+
 			Close?.Invoke();
 		}
 
@@ -91,7 +98,7 @@ namespace SMS
 				Student tmp = context.Students.Single(x => x.IsSelected == true);
 				if (tmp != null)
 				{
-					MessageBox.Show("Is selected true for selected student");
+					//MessageBox.Show("Is selected true for selected student");
 					//context.Students.Remove(tmp);
 					//if (_firstName == null) _firstName = tmp.FirstName;
 					//if (_lastName == null)  _lastName = tmp.LastName;
@@ -115,7 +122,7 @@ namespace SMS
 				}
 				else
 				{
-					MessageBox.Show("Is selected false for selected student");
+					MessageBox.Show("Please select a student again");
 				}
 			}
 			MessageBox.Show("Refresh the student records to see the changes 😊");
@@ -161,6 +168,18 @@ namespace SMS
 			string dateString = "2000-01-01";
 			DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 			_dateOfBirth = date;
+
+			using (DataContext context = new DataContext())
+			{
+				Student tmp = context.Students.Single(x => x.IsSelected == true);
+				_firstName = tmp.FirstName;
+				_lastName = tmp.LastName;
+				_gender = tmp.Gender.ToString();
+				_imagei = tmp.Image;
+				_dateOfBirth = DateTime.Parse(tmp.DateOfBirth);
+				_gPA = tmp.GPA.ToString();
+				_email = tmp.Email;
+			}
 		}
 	}
 }

@@ -22,6 +22,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#dcdcdc"/>
             </Trigger>
         </Style.Triggers>
@@ -49,6 +50,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#7b5cd6"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
@@ -61,6 +63,12 @@
         <Setter Property="Height" Value="15"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="20 2 20 0"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="textBoxSearch" TargetType="TextBox">
@@ -84,6 +92,7 @@
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
                         </Trigger>
 
@@ -123,6 +132,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#7b5cd6"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
@@ -153,6 +163,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="BorderBrush" Value="#784ff2"/>
             </Trigger>
         </Style.Triggers>
@@ -299,6 +310,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#784ff2"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
@@ -327,6 +339,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#ffc107"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
@@ -355,6 +368,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Background" Value="#dc3545"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
@@ -366,6 +380,11 @@
         <Setter Property="Width" Value="10"/>
         <Setter Property="Height" Value="10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="gridEditButton" TargetType="Button">
@@ -392,6 +411,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#673ab7"/>
+                <Setter Property="Cursor" Value="Hand"/>
             </Trigger>
         </Style.Triggers>
 
@@ -405,6 +425,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#f44336"/>
+                <Setter Property="Cursor" Value="Hand"/>
             </Trigger>
         </Style.Triggers>
 
@@ -414,6 +435,11 @@
         <Setter Property="Width" Value="12"/>
         <Setter Property="Height" Value="12"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--#REGION DataGrid styles-->
@@ -428,6 +454,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Stroke" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">

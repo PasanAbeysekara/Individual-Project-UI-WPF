@@ -102,7 +102,7 @@
                                 CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/school.jpg"/>
+                                    <ImageBrush ImageSource="/Images/school.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
@@ -115,51 +115,63 @@
 
                         <!--Menu Separator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="1" Background="#7e5fde"/>
-
+                      
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource menuButton}" Command="{Binding UserDashboardViewCommand}">
+
+                            <TextBlock Text="Sort By" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                       DockPanel.Dock="Top" TextAlignment="Center" Margin="0 0 0 10"/>
+
+
+                            <Button Style="{StaticResource menuButton}" Click="Fname_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <icon:PackIconMaterial Kind="Home" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Dashboard"/>
+                                    <icon:PackIconMaterial Kind="Account"  Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="First Name"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Command="{Binding UserPatientsViewCommand}">
+                            <Button Style="{StaticResource menuButton}" Click="Lname_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Patients"/>
+                                    <icon:PackIconMaterial Kind="Account" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Last Name"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Foreground="#ffffff" Command="{Binding UserAppointmentsViewCommand}">
+                            <Button Style="{StaticResource menuButton}" Click="Gender_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Appointments"/>
+                                    <icon:PackIconMaterial Kind="GenderMaleFemale" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Gender"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Command="{Binding UserPrescriptionsViewCommand}">
+                            <Button Style="{StaticResource menuButton}" Click="DOB_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <icon:PackIconMaterial Kind="Prescription" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Prescriptions"/>
+                                    <icon:PackIconMaterial Kind="Calendar" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Date of Birth"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Command="{Binding UserBillingViewCommand}">
+                            <Button Style="{StaticResource menuButton}" Click="GPA_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Billing"/>
+                                    <icon:PackIconMaterial Kind="TrendingUp" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="GPA"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}" Click="Email_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <icon:PackIconMaterial Kind="Email" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Email"/>
                                 </StackPanel>
                             </Button>
 
                         </StackPanel>
 
-                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" 
+                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="CloseButton_Click"
                                     DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
+                                <TextBlock Text="Exit"/>
                             </StackPanel>
                         </Button>
 
@@ -194,7 +206,11 @@
                     <icon:PackIconMaterial Kind="Close"/>
                 </Button>
 
-                <Button Style="{StaticResource topButton}" Margin="0 0 55 0" HorizontalAlignment="Right" Click="MinimizeButton_Click">
+                <Button Style="{StaticResource topButton}" Margin="0 0 55 0" HorizontalAlignment="Right" Click="MaximizeButton_Click">
+                    <icon:PackIconMaterial Kind="WindowMaximize"/>
+                </Button>
+
+                <Button Style="{StaticResource topButton}" Margin="0 0 110 0" HorizontalAlignment="Right" Click="MinimizeButton_Click">
                     <icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
 
@@ -216,9 +232,7 @@
 
                 <!--Tab Buttons-->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button Content="Club Staff" Style="{StaticResource tabButton}" BorderBrush="#784ff2"/>
-                    <Button Content="Players" Style="{StaticResource tabButton}"/>
-                    <Button Content="Archived" Style="{StaticResource tabButton}"/>
+                    <Button Content="Records" Style="{StaticResource tabButton}" BorderBrush="#784ff2"/>
                 </StackPanel>
 
                 <!--Counter Titles-->
@@ -288,15 +302,15 @@
 
                         <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
 
-                        <Button Style="{StaticResource pagingButton}" Content="1"/>
-                        <Button Style="{StaticResource pagingButton}" Content="2" Background="#7950f2" Foreground="#ffffff"/>
+                        <Button Style="{StaticResource pagingButton}" Content="1" Background="#7950f2" Foreground="#ffffff"/>
+                        <Button Style="{StaticResource pagingButton}" Content="2" />
                         <Button Style="{StaticResource pagingButton}" Content="3"/>
 
                         <TextBlock Text="..." Foreground="#6c7682" VerticalAlignment="Center"
                                    FontSize="15" Margin="10 0"/>
 
                         <Button Style="{StaticResource pagingButton}" Content="7"/>
-                        <Button Style="{StaticResource pagingButton}" Content="8" Background="#7950f2" Foreground="#ffffff"/>
+                        <Button Style="{StaticResource pagingButton}" Content="8"/>
                         <Button Style="{StaticResource pagingButton}" Content="9"/>
 
                         <Button Style="{StaticResource pagingButton}">

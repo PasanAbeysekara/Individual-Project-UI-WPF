@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,8 +59,7 @@ namespace SMS
 		{
 			DataContext = new MainWindowVM();
 			InitializeComponent();
-
-			
+			// Get the DataGrid's CollectionView
 
 		}
 
@@ -72,5 +72,79 @@ namespace SMS
 		{
 			WindowState = WindowState.Minimized;
 		}
+
+		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			if(WindowState == WindowState.Normal) WindowState = WindowState.Maximized;
+			else WindowState = WindowState.Normal;
+		}
+
+		private void Fname_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("FirstName", ListSortDirection.Ascending));
+
+		}
+
+		private void Lname_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("LastName", ListSortDirection.Ascending));
+
+		}
+
+		private void Gender_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("Gender", ListSortDirection.Ascending));
+
+		}
+
+		private void DOB_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("DateOfBirth", ListSortDirection.Ascending));
+
+		}
+
+		private void GPA_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("GPA", ListSortDirection.Ascending));
+
+		}
+
+		private void Email_Click(object sender, RoutedEventArgs e)
+		{
+			// Get the DataGrid's CollectionView
+			ICollectionView view = CollectionViewSource.GetDefaultView(ItemGrid.ItemsSource);
+
+			// Sort the CollectionView by the "ColumnName" property
+			view.SortDescriptions.Clear();
+			view.SortDescriptions.Add(new SortDescription("Email", ListSortDirection.Ascending));
+
+		}
+
+
 	}
 }
