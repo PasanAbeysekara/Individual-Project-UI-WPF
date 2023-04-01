@@ -11,9 +11,8 @@ using System.Windows;
 
 namespace SMS
 {
-	public class EditStudentWindowVM : INotifyPropertyChanged, ICloseWindows
+	class AddStudWindowVM : INotifyPropertyChanged, ICloseWindows
 	{
-
 		// #begin INotifyPropertyChanged Interface 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,14 +25,10 @@ namespace SMS
 		}
 		// #end
 
-		// for ICloseWindows
-		public Action CloseAction { get; internal set; }
-		public Action Close { get; set; }
-
-
 		private string _firstName;
 
 		public string FirstName { get { return _firstName; } set { _firstName = value; OnPropertyChanged(nameof(FirstName)); } }
+
 
 		private string _lastName;
 
@@ -42,6 +37,7 @@ namespace SMS
 		private string _imagei;
 
 		public string Imagei { get { return _imagei; } set { _imagei = value; OnPropertyChanged(nameof(Imagei)); } }
+
 
 		private string _gender;
 
@@ -68,6 +64,12 @@ namespace SMS
 
 		public string BrowseImageText { get { return _browseImageText; } set { _browseImageText = value; OnPropertyChanged(nameof(BrowseImageText)); } }
 
+
+
+		// for ICloseWindows
+		public Action CloseAction { get; internal set; }
+		public Action Close { get; set; }
+
 		// Close Button Command
 		private DelegateCommand _closeCommand;
 		public DelegateCommand CloseCommand =>
@@ -88,35 +90,8 @@ namespace SMS
 		{
 			using (DataContext context = new DataContext())
 			{
-				Student tmp = context.Students.Single(x => x.IsSelected == true);
-				if (tmp != null)
-				{
-					MessageBox.Show("Is selected true for selected student");
-					//context.Students.Remove(tmp);
-					//if (_firstName == null) _firstName = tmp.FirstName;
-					//if (_lastName == null)  _lastName = tmp.LastName;
-					//if (_gender == null) _gender = tmp.Gender.ToString();
-					//if (_imagei == null) _imagei = tmp.Image;
-					//if (_dateOfBirth == DateTime.ParseExact("2000-01-01", "yyyy-MM-dd", CultureInfo.InvariantCulture)) _dateOfBirth = DateTime.Parse(tmp.DateOfBirth);
-					//if (_gPA == null) _gPA = tmp.GPA.ToString();
-					//if (_email == null) _email= tmp.Email;
-					//tmp.IsSelected = false;
-					//context.Students.Add(new Student(_firstName, _lastName, _gender[0], _imagei, _dateOfBirth.ToShortDateString(), Convert.ToDouble(_gPA), _email));
-					tmp.FirstName = _firstName;
-					tmp.LastName = _lastName;
-					tmp.Gender = _gender[0];
-					tmp.Email = _email;
-					tmp.Image = _imagei;
-					tmp.DateOfBirth = _dateOfBirth.ToShortDateString();
-					tmp.GPA = Convert.ToDouble(_gPA);
-					tmp.Email = _email;
-					tmp.IsSelected = false;
-					context.SaveChanges();
-				}
-				else
-				{
-					MessageBox.Show("Is selected false for selected student");
-				}
+				context.Students.Add(new Student(_firstName, _lastName, _gender[0], _imagei, _dateOfBirth.ToShortDateString(), Convert.ToDouble(_gPA), _email));
+				context.SaveChanges();
 			}
 			MessageBox.Show("Refresh the student records to see the changes 😊");
 			Close?.Invoke();
@@ -154,7 +129,9 @@ namespace SMS
 
 		}
 
-		public EditStudentWindowVM() 
+
+
+		public AddStudWindowVM()
 		{
 			Genders = new List<string> { "Male", "Female" };
 			_browseImageText = "Browse Image";
@@ -162,5 +139,6 @@ namespace SMS
 			DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 			_dateOfBirth = date;
 		}
+
 	}
 }

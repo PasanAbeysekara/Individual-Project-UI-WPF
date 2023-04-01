@@ -4,9 +4,98 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SMS"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:uc="clr-namespace:SMS.UserControls"
         mc:Ignorable="d"
-        Title="EditStudentWindow" Height="450" Width="800">
+        Title="Add Student" Height="650" Width="1000"
+        Background="Transparent"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <local:EditStudentWindowVM/>
+    </Window.DataContext>
+    
     <Grid>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Left section-->
+
+        <Border Background="#ffd500"
+            Padding="30"
+            CornerRadius="25 0 0 25">
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="/Images/man.png" Width="160" Height="160" Margin="0 0 0 40"/>
+                <TextBlock Text="Add New Student" TextAlignment="Center" FontWeight="SemiBold" FontSize="28" Foreground="#363636"/>
+                <TextBlock TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Foreground="#363636" Text="Enter the students details"/>
+                <Button Style="{StaticResource buttonBlack}">
+                    <fa:ImageAwesome Icon="AngleRight" Width="25" Height="25" Foreground="#ffd500" Margin="3 0 0 0"/>
+
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!--Input section-->
+
+        <Border Grid.Column="1" Padding="20" Background="#ffffff" CornerRadius="0 25 25 0" MouseDown="Border_MouseDown" >
+            <Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="First Name" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="1" Text="Last Name" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="2" Text="Gender" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="3" Text="Date of Birth" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="4" Text="Image" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="5" Text="Email" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="6" Text="GPA" Style="{StaticResource text}"/>
+
+
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Gender}" ItemsSource="{Binding Genders,Mode=OneWay}"/>
+                    <DatePicker Grid.Column="1" Grid.Row="3" SelectedDateFormat="Long" SelectedDate="{Binding DateOfBirth,Mode=TwoWay}" Style="{StaticResource datePicker}"/>
+                    <Button Grid.Column="1" Grid.Row="4" Content="{Binding BrowseImageText,UpdateSourceTrigger=PropertyChanged}" Command="{Binding ImageBrowseCommand,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource buttonSub}"/>
+                    <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding GPA,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!--<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0 10">
+                        <uc:MyOption Icon="Male" Text="Male"/>
+                        <uc:MyOption Icon="Female" Text="Female"/>
+                    </StackPanel>-->
+
+                    <Grid Grid.Column="1" Grid.Row="7" Margin="0 40 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Content="Cancel" Margin="0 0 10 0" Style="{StaticResource buttonMain}" Click="ButtonCancel_Click" Command="{Binding CloseCommand}"/>
+                        <Button Content="Save" Margin="10 0 0 0" Grid.Column="1" Style="{StaticResource buttonMainGreen}" Click="ButtonSave_Click" Command="{Binding CreateCommand}"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
     </Grid>
 </Window>

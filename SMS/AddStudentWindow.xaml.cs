@@ -23,33 +23,44 @@ namespace SMS
 		{
 			DataContext = new AddStudentWindowVM();
 			InitializeComponent();
+			Loaded += AddStudentWindow_Loaded;
 		}
 
-
-		private void buttonSelectImage_Click(object sender, RoutedEventArgs e)
+		private void AddStudentWindow_Loaded(object sender, RoutedEventArgs e)
 		{
-			// Create OpenFileDialog 
-			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-
-			// Set filter for file extension and default file extension 
-			dlg.DefaultExt = ".png";
-			dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-
-
-			// Display OpenFileDialog by calling ShowDialog method 
-			Nullable<bool> result = dlg.ShowDialog();
-
-
-			// Get the selected file name and display in a TextBox 
-			if (result == true)
+			if(DataContext is ICloseWindows vm)
 			{
-				// Open document 
-				string filename = dlg.FileName;
-				//textBox1.Text = filename;
+				vm.Close += () =>
+				{
+					this.Close();
+				};
 			}
 		}
+
+		//private void buttonSelectImage_Click(object sender, RoutedEventArgs e)
+		//{
+		//	// Create OpenFileDialog 
+		//	Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+		//	// Set filter for file extension and default file extension 
+		//	dlg.DefaultExt = ".png";
+		//	dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+
+		//	// Display OpenFileDialog by calling ShowDialog method 
+		//	Nullable<bool> result = dlg.ShowDialog();
+
+
+		//	// Get the selected file name and display in a TextBox 
+		//	if (result == true)
+		//	{
+		//		// Open document 
+		//		string filename = dlg.FileName;
+		//		//textBox1.Text = filename;
+		//	}
+		//}
 
 		private void buttonCreate_Click(object sender, RoutedEventArgs e)
 		{
@@ -73,12 +84,6 @@ namespace SMS
 		{
 
 			this.Close();
-		}
-
-
-		private void MyTextBox_Loaded()
-		{
-
 		}
 
 	}

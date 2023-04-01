@@ -15,14 +15,26 @@ using System.Windows.Shapes;
 namespace SMS
 {
 	/// <summary>
-	/// Interaction logic for EditStudentWindow.xaml
+	/// Interaction logic for AddStudWinow.xaml
 	/// </summary>
-	public partial class EditStudentWindow : Window
+	public partial class AddStudWinow : Window
 	{
-		public EditStudentWindow()
+		public AddStudWinow()
 		{
-			DataContext = new EditStudentWindowVM();
+			DataContext = new AddStudWindowVM();
 			InitializeComponent();
+			Loaded += AddStudWindow_Loaded;
+		}
+
+		private void AddStudWindow_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (DataContext is ICloseWindows vm)
+			{
+				vm.Close += () =>
+				{
+					this.Close();
+				};
+			}
 		}
 		private void buttonSelectImage_Click(object sender, RoutedEventArgs e)
 		{
@@ -73,10 +85,5 @@ namespace SMS
 			this.Close();
 		}
 
-
-		private void MyTextBox_Loaded()
-		{
-
-		}
 	}
 }
