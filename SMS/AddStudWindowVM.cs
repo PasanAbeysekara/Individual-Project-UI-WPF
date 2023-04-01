@@ -1,7 +1,7 @@
 ﻿using Prism.Commands;
-using SMS.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -12,8 +12,7 @@ using System.Windows;
 
 namespace SMS
 {
-
-	class EditStudentWindowVM : INotifyPropertyChanged, ICloseWindows
+	class AddStudWindowVM:INotifyPropertyChanged, ICloseWindows
 	{
 		// #begin INotifyPropertyChanged Interface 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -29,41 +28,38 @@ namespace SMS
 
 		private string _firstName;
 
-		public string FirstName { get { return _firstName; } set { _firstName = value; } }
+        public string FirstName { get { return _firstName;} set { _firstName = value; OnPropertyChanged(nameof(FirstName)); } }
 
 
 		private string _lastName;
 
-		public string LastName { get { return _lastName; } set { _lastName = value; } }
+		public string LastName { get { return _lastName; } set { _lastName = value; OnPropertyChanged(nameof(LastName)); } }
 
 		private string _imagei;
 
-		public string Imagei { get { return _imagei; } set { _imagei = value; } }
+		public string Imagei { get { return _imagei; } set { _imagei = value; OnPropertyChanged(nameof(Imagei)); } }
 
 
 		private string _gender;
 
-		public string Gender { get { return _gender; } set { _gender = value; } }
+		public string Gender { get { return _gender; } set { _gender = value; OnPropertyChanged(nameof(Gender)); } }
 
 		public List<string> _genders;
 		public List<string> Genders { get { return _genders; } set { _genders = value; OnPropertyChanged(nameof(Genders)); } }
 
 		private DateTime _dateOfBirth;
 
-		public DateTime DateOfBirth { get { return _dateOfBirth; } set { _dateOfBirth = value; } }
+		public DateTime DateOfBirth { get { return _dateOfBirth; } set { _dateOfBirth = value; OnPropertyChanged(nameof(DateOfBirth)); } }
 
 		private string _email;
 
-		public string Email { get { return _email; } set { _email = value; } }
+		public string Email { get { return _email; } set { _email = value; OnPropertyChanged(nameof(Email)); } }
 
 
 		private string _gPA;
 
-		public string GPA { get { return _gPA; } set { _gPA = value; } }
+		public string GPA { get { return _gPA; } set { _gPA = value; OnPropertyChanged(nameof(GPA)); } }
 
-		private Student _selectedStudent;
-
-		public Student SelectedStudent { get { return _selectedStudent; } set { _selectedStudent = value; OnPropertyChanged(nameof(SelectedStudent)); } }
 
 		private string _browseImageText;
 
@@ -76,35 +72,26 @@ namespace SMS
 		public Action Close { get; set; }
 
 		// Close Button Command
-		private DelegateCommand<Student> _closeCommand;
-		public DelegateCommand<Student> CloseCommand =>
-			_closeCommand ?? (_closeCommand = new DelegateCommand<Student>(ExecuteCloseCommand));
+		private DelegateCommand _closeCommand;
+		public DelegateCommand CloseCommand =>
+			_closeCommand ?? (_closeCommand = new DelegateCommand(ExecuteCloseCommand));
 
-		void ExecuteCloseCommand(Student parameter)
+		void ExecuteCloseCommand()
 		{
 			Close?.Invoke();
 		}
 
 		// Create Button Command
-		private DelegateCommand<Student> _createCommand;
-		public DelegateCommand<Student> CreateCommand =>
-			_createCommand ?? (_createCommand = new DelegateCommand<Student>(ExecuteCreateCommand));
+		private DelegateCommand _createCommand;
+		public DelegateCommand CreateCommand =>
+			_createCommand ?? (_createCommand = new DelegateCommand(ExecuteCreateCommand));
+		
 
-
-		void ExecuteCreateCommand(Student parameter)
+		void ExecuteCreateCommand()
 		{
 			using (DataContext context = new DataContext())
 			{
-				SelectedStudent.FirstName = _firstName;
-				SelectedStudent.LastName = _lastName;
-				SelectedStudent.Email = _email;
-				SelectedStudent.DateOfBirth = _dateOfBirth.ToShortDateString();
-				SelectedStudent.Image = _imagei;
-				SelectedStudent.Gender = _gender[0];
-				SelectedStudent.GPA = Convert.ToDouble(_gPA);
-
-				context.Students.Remove(context.Students.Single(x => x.Id == SelectedStudent.Id));
-				context.Students.Add(SelectedStudent);
+				context.Students.Add(new Student(_firstName, _lastName, _gender[0],_imagei,_dateOfBirth.ToShortDateString(),Convert.ToDouble(_gPA),_email));				
 				context.SaveChanges();
 			}
 			MessageBox.Show("Refresh the student records to see the changes 😊");
@@ -144,9 +131,9 @@ namespace SMS
 		}
 
 
-		public EditStudentWindowVM()
-		{
 
+		public AddStudWindowVM()
+		{
 			Genders = new List<string> { "Male", "Female" };
 			_browseImageText = "Browse Image";
 			string dateString = "2000-01-01";

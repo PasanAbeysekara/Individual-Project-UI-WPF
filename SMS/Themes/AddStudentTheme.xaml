@@ -52,7 +52,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style TargetType="TextBox">
+    <!--<Style TargetType="TextBox">
         <Setter Property="Background" Value="#f5f7f9"/>
         <Setter Property="Foreground" Value="#767676"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -84,7 +84,7 @@
             </Setter.Value>
         </Setter>
 
-    </Style>
+    </Style>-->
 
     <Style x:Key="button" TargetType="Button">
         <Setter Property="Background" Value="#c6c6c6"/>
