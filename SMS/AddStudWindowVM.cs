@@ -11,6 +11,10 @@ using System.Windows;
 
 namespace SMS
 {
+	interface ICloseWindows
+	{
+		Action Close { get; set; }
+	}
 	class AddStudWindowVM : INotifyPropertyChanged, ICloseWindows
 	{
 		// #begin INotifyPropertyChanged Interface 
